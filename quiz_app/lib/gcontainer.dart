@@ -2,17 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:quiz_app/front_page.dart';
 
 class Gcontainer extends StatelessWidget {
-  const Gcontainer({super.key});
+  const Gcontainer(this.color1, this.color2, {super.key});
+  final Color color1;
+  final Color color2;
 
   @override
   Widget build(context) {
     return Container(
-      decoration: const BoxDecoration(
-          gradient: LinearGradient(colors: [
-        Color.fromARGB(255, 247, 236, 139),
-        Color.fromARGB(255, 175, 158, 5)
-      ], begin: Alignment.topLeft, end: Alignment.bottomRight)),
-      child: const Center(child: FrontLogo(),) ,
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+            colors: [color1, color2],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight),
+      ),
+      child: const Center(
+        child: FrontLogo(),
+      ),
     );
   }
 }
