@@ -43,7 +43,7 @@ class _BackgroundState extends State<Background> {
     }
     
     if(activeScreen == 'result_page') {
-      currentScreen = ResultScreen(changeScreen);
+      currentScreen = ResultScreen(changeScreen, choosenAnswer: selectAnswer,);
     }
 
     return MaterialApp(
