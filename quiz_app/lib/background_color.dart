@@ -14,7 +14,7 @@ class Background extends StatefulWidget {
   }
 }
 class _BackgroundState extends State<Background> {
-  List<String> selectAnswer = []; //an empty list to store the selected answer
+  List<String> _selectAnswer = []; //an empty list to store the selected answer
   var activeScreen = 'home_page';
 
 //the changescreen function can contains conditional properties that has to be triggered.
@@ -25,10 +25,9 @@ class _BackgroundState extends State<Background> {
   }
   //this function is used to store or append the selected answes in quiz screen/page. 
   void storeAnswers(String answer) {
-    selectAnswer.add(answer);
-    if (selectAnswer.length == questions.length) {
+    _selectAnswer.add(answer);
+    if (_selectAnswer.length == questions.length) {
       setState(() {
-        //selectAnswer = [];
         activeScreen = 'result_page';
       });
     }
@@ -36,8 +35,8 @@ class _BackgroundState extends State<Background> {
 
   void requiz() {
     setState(() {
-      activeScreen = 'result_page';
-      selectAnswer = [];
+      _selectAnswer = [];
+      activeScreen = 'quiz_page';
     });
   }
 
@@ -50,7 +49,7 @@ class _BackgroundState extends State<Background> {
     }
     
     if(activeScreen == 'result_page') {
-      currentScreen = ResultScreen(reQuiz: changeScreen, chosenAnswer: selectAnswer,);
+      currentScreen = ResultScreen(reQuiz: requiz, chosenAnswer: _selectAnswer,);
     }
 
     return MaterialApp(
