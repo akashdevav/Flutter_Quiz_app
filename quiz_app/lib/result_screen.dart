@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:quiz_app/data/questions.dart';
 import 'package:quiz_app/question_summary.dart';
 
 class ResultScreen extends StatelessWidget {
-  const ResultScreen({super.key, required this.reQuiz, required this.chosenAnswer});
+  const ResultScreen(
+      {super.key, required this.reQuiz, required this.chosenAnswer});
   final void Function() reQuiz;
   final List<String> chosenAnswer;
 
@@ -41,7 +43,14 @@ class ResultScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
-                'you got $numcorrectAnswer out of $numtotalQuestion correct answer from the above question.'),
+              'you got $numcorrectAnswer out of $numtotalQuestion correct answer from the above question.',
+              style: GoogleFonts.oswald(
+                color: const Color.fromARGB(255, 11, 36, 48),
+                fontSize: 18,
+                fontWeight: FontWeight.w800,
+              ),
+              textAlign: TextAlign.center,
+            ),
             const SizedBox(
               height: 20,
             ),
@@ -51,8 +60,17 @@ class ResultScreen extends StatelessWidget {
             ),
             TextButton(
               onPressed: reQuiz,
+              style: const ButtonStyle(
+              backgroundColor:
+                  MaterialStatePropertyAll(Color.fromARGB(255, 31, 141, 145)),
+            ),
               child: const Text(
-                'Retake Quiz',
+                'Retake Quiz', 
+                style: TextStyle( 
+                            fontSize: 13,
+                            fontWeight: FontWeight.w700,
+                            color: Color.fromARGB(255, 248, 246, 249),
+                            ),
               ),
             ),
           ],

@@ -40,9 +40,9 @@ class _QuizScreenState extends State<QuizScreen> {
             Text(
               currentquestion.text,
               style: GoogleFonts.lato(
-                color: Colors.black,
+                color: const Color.fromARGB(233, 0, 0, 0),
                 fontSize: 15,
-                fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.w900,
               ),
               textAlign: TextAlign.center,
             ),
