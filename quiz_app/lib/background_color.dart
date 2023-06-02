@@ -28,10 +28,17 @@ class _BackgroundState extends State<Background> {
     selectAnswer.add(answer);
     if (selectAnswer.length == questions.length) {
       setState(() {
-        selectAnswer = [];
+        //selectAnswer = [];
         activeScreen = 'result_page';
       });
     }
+  }
+
+  void requiz() {
+    setState(() {
+      activeScreen = 'result_page';
+      selectAnswer = [];
+    });
   }
 
   @override
@@ -43,7 +50,7 @@ class _BackgroundState extends State<Background> {
     }
     
     if(activeScreen == 'result_page') {
-      currentScreen = ResultScreen(changeScreen, choosenAnswer: selectAnswer,);
+      currentScreen = ResultScreen(reQuiz: changeScreen, chosenAnswer: selectAnswer,);
     }
 
     return MaterialApp(

@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app/data/questions.dart';
+import 'package:quiz_app/question_summary.dart';
 
 class ResultScreen extends StatelessWidget {
-  const ResultScreen(this.reQuiz, {super.key, required this.choosenAnswer});
+  const ResultScreen({super.key, required this.reQuiz, required this.chosenAnswer});
   final void Function() reQuiz;
-  final List<String> choosenAnswer;
+  final List<String> chosenAnswer;
 
   //New method to store the questions and right answers in the result page.
   List<Map<String, Object>> getSummaryData() {
     final List<Map<String, Object>> summary = [];
-    for (var i= 0; i< choosenAnswer.length; i++) {
+    for (var i = 0; i < chosenAnswer.length; i++) {
       summary.add({
         'question_index': i,
         'quiz_question': questions[i].text,
-        'your_answer': questions[i].answers[0]
+        'correct_answer': questions[i].answers[0],
+        'user_answer': chosenAnswer[i]
       });
     }
 
@@ -22,6 +24,14 @@ class ResultScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final SummaryData = getSummaryData();
+    final numtotalQuestion = questions.length;
+    final numcorrectAnswer = getSummaryData().where(
+      (data) {
+        return data['user_answer'] == data['correct_answer'];
+      },
+    ).length;
+
     return SizedBox(
       width: double.infinity,
       child: Container(
@@ -30,11 +40,12 @@ class ResultScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const Text('you got x out of y correct answer from the above question.'),
+            Text(
+                'you got $numcorrectAnswer out of $numtotalQuestion correct answer from the above question.'),
             const SizedBox(
               height: 20,
             ),
-            const Text('you selected answer + the right answer'),
+            QuestionsSummary(SummaryData),
             const SizedBox(
               height: 20,
             ),
